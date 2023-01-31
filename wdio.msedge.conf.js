@@ -38,6 +38,14 @@ exports.config = {
   hostname: "localhost",
   port: 4444,
   protocol: "http",
+  
+  If running on local machine: 
+  
+   hostname: "localhost",
+  port: 4444,
+  protocol: "http",
+  
+  
   // Patterns to exclude.
   exclude: [
     //"./test/specs/**/sample*.js",
