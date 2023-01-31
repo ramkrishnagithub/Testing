@@ -1,0 +1,43 @@
+const Page = require("./page");
+const fs = require("fs");
+const path = require("path");
+
+/*****************Fake Data Generation****************** */
+var Chance = require("chance");
+
+const chance = new Chance();
+
+/*****************Fake Data Generation****************** */
+
+let locatorparameters = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "../testdata/locator_factory.json"))
+);
+
+let testdata = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, "../testdata/testdata.json"))
+);
+const locatorText = locatorparameters.EN.pages.SamplePage;
+const dataValue = testdata.EN.pages.SamplePage;
+
+class SamplePage extends Page {
+
+get SamplePagePortalLink() {
+    return $('//span[text()="SamplePage"]');
+  }
+
+  get SamplePageLoginPage() {
+    return $('//div[text()="SamplePage"]');
+  }
+
+/*********************** *********************
+   * Functions ******
+   ********************************************/
+
+  async navigateToSamplePage() {
+    await this.SamplePagePortalLink.waitForClickable({ timeout: 20000 });
+    await this.SamplePagePortalLink.click();
+  }
+  
+  }
+
+module.exports = new SamplePage();
